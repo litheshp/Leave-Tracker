@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='importApp'>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Leave Tracker</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link href="../vendor/datatables-plugins/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="../vendor/datatables-responsive/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="../vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+	
+</head>
+<body>
+
+
+	<div ng-include="'navigation.html'"></div>
+	<div id="wrapper" ng-controller="dataController" data-ng-init="Authenticate()">
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Data Import</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">weekly data</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+
+
+							<form role="form" id="uploadForm" enctype="multipart/form-data"
+								action="/pages/upload1" onsubmit="return confirmSumbission()" method="post">
+								
+								<div id='notifications' class="alert alert-success"></div>
+								
+
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>File input</label> <input class="btn btn-default"
+												type="file" name="file" required></input>
+										</div>
+										
+										
+									</div>
+									</div>
+									<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary"
+												value="Import data" name="submit">
+										</div>
+									</div>
+									
+									<div class="col-lg-6">
+										<div class="form-group">
+											<input type="button" class="btn btn-danger"
+												value="Delete All" name="Delete" ng-click="deleteAll()">
+										</div>
+
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div id="overlay">
+					<div id="text">Please wait , your import is in progress.....</div>
+				</div>
+				<!-- <div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Type of import :Employee Data</div>
+						<div class="panel-body">
+							<form role="form" id="uploadForm" enctype="multipart/form-data"
+								action="/pages/upload2" method="post">
+								<div class="form-group">
+									<label>File input</label> <input class="btn btn-default"
+										type="file" name="file"></input>
+								</div>
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary"
+										value="Import data" name="submit">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+	<!-- /#wrapper -->
+	<!-- AngularJS -->
+<script>
+function confirmSumbission() {
+   if(!confirm("Are you sure you want to import the attached spreadsheet?")){
+    return false;
+   }
+   else{
+    document.getElementById("notifications").innerHTML = "Importing.....";
+    document.getElementById("overlay").style.display = "block";
+    //alert("Please wait , your import is in progress.....")
+   }
+}
+
+</script>
+
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../controllers/weeklyDataImport.client.controller.js"></script>
+	<!-- jQuery -->
+	<script src="../vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- DataTables JavaScript -->
+	<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+	<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="../dist/js/sb-admin-2.js"></script>
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<style>
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+    
+    
+}
+
+#text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+</style>
+</body>
+
+</html>

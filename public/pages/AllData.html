@@ -1,468 +1,284 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='dataApp'>
+<html lang="en" >
 
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<title>Leave Tracker</title>
+    <title>Innovations | IBM</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- MetisMenu CSS -->
-<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-<!-- DataTables CSS -->
-<link href="../vendor/datatables-plugins/dataTables.bootstrap.css"	rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-<!-- DataTables Responsive CSS -->
-<link href="../vendor/datatables-responsive/dataTables.responsive.css"	rel="stylesheet">
+  
 
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="../vendor/font-awesome/css/font-awesome.min.css"	rel="stylesheet" type="text/css">
-<!-- Morris Charts CSS -->
-<link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<body >
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Innovation Tracker</a>
+    </div>
+    <!-- /.navbar-header -->
 
-	<div id="wrapper" ng-controller="AlldataController" data-ng-init="Authenticate()">
-		<!-- Navigation -->
-		<div ng-include="'navigation.html'" ></div>
+    <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> </a>
+                </li>
+                <li><a href="#"><i class="fa fa-envelope  fa-fw"></i> </a>
+                </li>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="/signout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
 
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Data</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Filter</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<form role="form">
-										<div class="row">
-											<div class="col-lg-6">
-												<div class="form-group">
-													<label>Project</label> <select class="form-control"
-														ng-options="x for x in ProjectList track by x"
-														ng-model="Project" name="Project" ng-change="byTeam(x)"><option
-															value="">All</option></select>
-												</div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+         
+                <li>
+                    <a href="AllData.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+               <li>
+                    <a href="#"><i class="fa fa-table fa-fw"></i> Ideas<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="ideas.html">Data</a>
+                         
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Data Import<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="importIdeaRequests.html">Import From excel</a>
+                        </li>
+                         
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Requests<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="newRequest.html">Idea Request</a>
+                        </li>
+                       
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                  
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+    <div id="wrapper" >
 
-											</div>
-											<div class="col-lg-6">
-												<div class="form-group">
-													<label>Team</label> <select class="form-control"
-														ng-options="x for x in TeamList track by x"
-														ng-model="team" name="team" ng-change="byTeam()"><option
-															value="">All</option></select>
-												</div>
-											</div>
+     <div id="menu"></div>
 
-										</div>
-										<div class="row">
-											<div class="col-lg-6">
-												<div class="form-group">
-													<label>Location</label> <select class="form-control"
-														ng-options="x  for x in LocationList track by x"
-														ng-model="Location" name="Location" ng-change="byTeam()"><option
-															value="">All</option></select>
-												</div>
-
-											</div>
-											<div class="col-lg-6">
-												<div class="form-group">
-													<label>Duration</label> <select class="form-control"
-														ng-model="duration" ng-change="byDuration()">
-														<option value="Weekly">Weekly</option>
-														<option value="Monthly">Monthly</option>
-														<option value="Quarterly">Quarterly</option>
-														<option value="Till date">Till date</option>
-
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-lg-6"></div>
-											<div class="col-lg-6">
-												<div ng-show="Weekly" class="form-group">
-													<label>Week</label> <select class="form-control"
-														ng-options="x| date:'MM/dd/yyyy' for x in WeekList  track by x"
-														ng-model="Week" name="Week" ng-change="byTeam()"><option
-															value="">All</option></select>
-												</div>
-												<div ng-show="Monthly" class="form-group">
-													<label>Month</label> <select class="form-control"
-														ng-model="Month" name="Month" ng-change="byTeam()">
-														<option value="January">January</option>
-														<option value="February">February</option>
-														<option value="March">March</option>
-														<option value="April">April</option>
-														<option value="May">May</option>
-														<option value="June">June</option>
-														<option value="July">July</option>
-														<option value="August">August</option>
-														<option value="September">September</option>
-														<option value="October">October</option>
-														<option value="November">November</option>
-														<option value="December">December</option>
-														<option value=""></option>
-													</select>
-												</div>
-												<div ng-show="Quarterly" class="form-group">
-													<label>Quarter</label> <select class="form-control"
-														ng-model="Quarter" name="Quarter" ng-change="byTeam()">
-														<option value="Q1">Quarter 1</option>
-														<option value="Q2">Quarter 2</option>
-														<option value="Q3">Quarter 3</option>
-														<option value="Q4">Quarter 4</option>
-														<option value=""></option>
-													</select>
-												</div>
-											</div>
-										</div>
-
-
-										<button type="submit" class="btn btn-primary"
-											ng-click="calculateEmployeeData()">Calculate UTE</button>
-										<button type="reset" class="btn btn-primary"
-											onclick="location.reload()";>Reset</button>
-									</form>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /.row -->
-			<div class="row">
-				<!-- /.panel -->
-				<div class="col-lg-12">
-					<div class="panel panel-red">
-						<div class="panel-heading">
-							<b>{{Project}} </b> : {{team}} </b>: {{duration}} {{month}} {{latestWeek| date:'MM/dd/yyyy'}} Analysis
-						</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<div class="table-responsive table-bordered">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Count</th>
-											<th>Productive Ute</th>
-											<th>Chargeable Ute</th>
-											<th>OT %</th>
-											<th>Leave %</th>
-											<th>DH %</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="data in totalUTE">
-											<td>{{dataList.length }}</td>
-											<td>{{ data.Productive_Ute | number:2}}</td>
-											<td>{{ data.Chargeable_Ute | number:2 }}</td>
-											<td>{{ data.OT_Per | number:2}}</td>
-											<td>{{ data.Leave_Per | number:2}}</td>
-											<td>{{ data.DH_Per| number:2}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<!-- /.table-responsive -->
-							<!-- /.panel-heading -->
-
-						</div>
-					</div>
-
-					<!-- /.panel-body -->
-				</div>
-
-			</div>
-			<!-- /.col-lg-6 -->
-
-			<div class="row">
-				<div class="col-lg-12">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa  fa-question fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id="proposed"></div>
+                                    <div>Proposed!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-check  fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id="completed">25</div>
+                                    <div>Completed!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+<!--                                 <span class="pull-left">View Details</span> -->
+                                <a href="holidayList.html" class="pull-left">View Details</a>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-wrench fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id ="inprogress">25</div>
+                                    <div>In Progress!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+<!--                                 <span class="pull-left">View Details</span> -->
+                                <a href="requestList.html" class="pull-left">View Details</a>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-circle-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id ="open">13</div>
+                                    <div>Open!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+				<div class="col-lg-6 col-md-6">
 					<div class="panel panel-green">
-						<div class="panel-heading">YTD Ute</div>
+						<div class="panel-heading"> <i class="fa fa-bar-chart-o "></i> Ideas</div>
+						
 						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-12">
-
-
-									<div class="table-responsive table-bordered">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Team</th>
-													<th>Emp_SNo</th>
-													<th>Available Hrs</th>
-													<th>Productive Hrs</th>
-													<th>Chargeable Hrs</th>
-													<th>OT Hours</th>
-													<th>Leave Hrs</th>
-													<th>DH</th>
-													<th>Productive Ute</th>
-													<th>Chargeable Ute</th>
-													<th>OT %</th>
-													<th>Leave %</th>
-													<th>DH %</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr ng-repeat="data in dataList">
-													<td><a type="button" data-toggle="modal"
-														data-target="#myModal"
-														ng-click="getEmployeeData(data.Name)">{{data.Name}}</a></td>
-													<td>{{ data.Team }}</td>
-													<td>{{ data.Emp_ID }}</td>
-													<td>{{ data.Available_Hrs }}</td>
-													<td>{{ data.Productive_Hrs }}</td>
-													<td>{{ data.Chargeable_Hrs }}</td>
-													<td>{{ data.OT_Hours }}</td>
-													<td>{{ data.Leave_Hrs }}</td>
-													<td>{{ data.DH }}</td>
-													<td>{{ data.Productive_Ute | number:2}}</td>
-													<td>{{ data.Chargeable_Ute | number:2 }}</td>
-													<td>{{ data.OT_Per | number:2}}</td>
-													<td>{{ data.Leave_Per | number:2}}</td>
-													<td>{{ data.DH_Per| number:2}}</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-
-								</div>
-							</div>
+							 <canvas id="myChart" width="400" height="200"></canvas>
 						</div>
-					</div>
-				</div>
-
-			</div>
-			<!-- /.row -->
-			<div class="modal fade" id="myModal2" role="dialog">
-				<div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<!-- 										<h4 class="modal-title">Employee UTE Details</h4> -->
-						</div>
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="panel panel-green">
-										<div class="panel-heading">
-											<i class="fa fa-bar-chart-o fa-fw"></i>UTE of
-											{{WeeklyDataUTE[0].week}}
-										</div>
-										<div class="panel-body">
-											<div class="table-responsive table-bordered">
-												<table class="table table-hover">
-													<tbody>
-														<tr>
-															<td>Total Available Hrs</td>
-															<td>{{WeeklyDataUTE[0].week_hours}}</td>
-														</tr>
-														<tr>
-															<td>Total Actual Hours</td>
-															<td>{{WeeklyDataUTE[0].Actual_Hours}}</td>
-														</tr>
-														<tr>
-															<td>Total OT Hrs</td>
-															<td>{{WeeklyDataUTE[0].OT_Hrs}}</td>
-														</tr>
-														<tr>
-															<td>Total Leave Hours</td>
-															<td>{{WeeklyDataUTE[0].Leave_Hours}}</td>
-														</tr>
-														<tr>
-															<td>Utilization</td>
-															<td>{{WeeklyDataUTE[0].utalisation | number:2}}%</td>
-														</tr>
-														<tr>
-															<td>Ute</td>
-															<td>{{WeeklyDataUTE[0].ute}}</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
-						</div>
-
+						<a href="#">
+                            <div class="panel-footer">
+<!--                                 <span class="pull-left">View Details</span> -->
+                                <a href="AllData.html" class="pull-left"> View Details</a>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
 					</div>
 
+					
+					
 				</div>
-
-			</div>
-
-			<div class="modal fade" id="myModal" role="dialog">
-				<div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<!-- 										<h4 class="modal-title">Employee UTE Details</h4> -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="panel panel-red">
+						<div class="panel-heading"> <i class="fa fa-mortar-board "></i> Idea of the Month</div>
+						
+						<div class="panel-body">
+                            <span class="pull-left"><i class="fa  fa-user fa-5x"></i></span>
 						</div>
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="panel panel-green">
-										<div class="panel-heading">
-											<i class="fa fa-bar-chart-o fa-fw"></i>UTE of
-											{{empDetails[0].Name}}
-										</div>
-										<div class="panel-body">
-											<div class="table-responsive table-bordered">
-												<table class="table table-hover">
-													<tbody>
-														<tr>
-															<td>Emp ID</td>
-															<td>{{dataIndividual[0].Emp_ID}}</td>
-														</tr>
-														<tr>
-															<td>Name</td>
-															<td>{{dataIndividual[0].Name}}</td>
-														</tr>
-														<tr>
-															<td>Team</td>
-															<td>{{dataIndividual[0].Team}}</td>
-														</tr>
-														<tr>
-															<td>Site</td>
-															<td>{{dataIndividual[0].Site}}</td>
-														</tr>
-														<tr>
-															<td>Project</td>
-															<td>{{dataIndividual[0].Project}}</td>
-														</tr>
-														<tr>
-															<td>Status</td>
-															<td>{{dataIndividual[0].Status}}</td>
-														</tr>
-														<tr>
-															<td>Total Available Hrs</td>
-															<td>{{dataIndividual[0].Available_Hrs}}</td>
-														</tr>
-														<tr>
-															<td>Total Productive Hrs</td>
-															<td>{{dataIndividual[0].Productive_Hrs}}</td>
-														</tr>
-														<tr>
-															<td>Total Chargeable Hrs</td>
-															<td>{{dataIndividual[0]. Chargeable_Hrs}}</td>
-														</tr>
-														<tr>
-															<td>Total OT Hrs</td>
-															<td>{{dataIndividual[0].OT_Hours}}</td>
-														</tr>
-														<tr>
-															<td>Total Leave Hours</td>
-															<td>{{dataIndividual[0].Leave_Hrs}}</td>
-														</tr>
-														<tr>
-															<td>Productive UTE</td>
-															<td>{{dataIndividual[0].Productive_Ute | number:2}}%</td>
-														</tr>
-														<tr>
-															<td>Chargeable UTE</td>
-															<td>{{dataIndividual[0].Chargeable_Ute | number:2}}%</td>
-														</tr>
-														<tr>
-															<td>OT %</td>
-															<td>{{dataIndividual[0].OT_Per | number:2}}%</td>
-														</tr>
-														<tr>
-															<td>Leave %</td>
-															<td>{{dataIndividual[0].Leave_Per | number:2}}%</td>
-														</tr>
-														<tr>
-															<td>DH %</td>
-															<td>{{dataIndividual[0].DH_Per | number:2}}%</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
-						</div>
-
+						<a href="#">
+                            <div class="panel-footer">
+<!--                                 <span class="pull-left">View Details</span> -->
+                                <a href="AllData.html" class="pull-left"> View Details</a>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
 					</div>
 
-				</div>
+						  
+                </div>
+               
+                
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
 
-			</div>
-
-		</div>
-		<!-- /#page-wrapper -->
-		<div id="overlay" >
+    </div>
+    <div id="overlay" >
 			<div id="text">Please wait</div>
 		</div>
-	</div>
-	<!-- /#wrapper -->
-	<!-- AngularJS -->
+    <!-- /#wrapper -->
 
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
 
-	<!-- jQuery -->
-	<script src="../vendor/jquery/jquery.min.js"></script>
+   
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-	<!-- Morris Charts JavaScript -->
-	<script src="../vendor/raphael/raphael.min.js"></script>
-	<script src="../vendor/morrisjs/morris.min.js"></script>
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
-	<script type="text/javascript" src="../js/app.js"></script>
-	<script type="text/javascript"	src="../controllers/Alldata.client.controller.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	
- <style>
+         <!-- jQuery -->
+         <script src="../vendor/jquery/jquery.min.js"></script>
+         <!-- Bootstrap Core JavaScript -->
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script type="text/javascript"	src="../controllers/Alldata.client.controller.js"></script>
+    
+   <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <style>
 #overlay {
     position: fixed;
     display: none;
@@ -475,8 +291,6 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
     cursor: pointer;
-    
-    
 }
 
 #text{

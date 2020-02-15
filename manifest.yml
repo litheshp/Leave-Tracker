@@ -1,6 +1,6 @@
 applications:
   - path: .
-    name: Leave-Tracker-master
+    name: Innovative Ideas
     environment_json: {}
     memory: 256M
     instances: 1

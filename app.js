@@ -5,7 +5,7 @@ passport = require('./config/passport');
 var db = mangoose();
 var app = express();
 var passport = passport();
-console.log(db);
+
 //cfenv provides access to your Cloud Foundry environment
 //for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');

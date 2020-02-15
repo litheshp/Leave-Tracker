@@ -30,11 +30,9 @@ module.exports = function(){
 	 * config.sessionSecret, }));
 	 */
 	require('../app/routes/index.server.routes.js')(app);
-	require('../app/routes/requests.server.routes.js')(app);
-	require('../app/routes/companyHoliday.server.routes.js')(app);
-	require('../app/routes/excelImport.server.routes.js')(app);
-	require('../app/routes/billingCalendar.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
+	require('../app/routes/ideas.server.routes.js')(app);
+	require('../app/routes/import.server.routes.js')(app);
 	app.use(express.static('./public'));
 	return app;
 }

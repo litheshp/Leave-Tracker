@@ -1,8 +1,7 @@
 var multer = require('multer');
-var model = require('mongoose').model('employeeData');
-var calendarData = require('mongoose').model('calendar');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
+
 var storage = multer.diskStorage({ // multers disk storage settings
 	destination : function(req, file, cb) {
 		cb(null, './uploads/')
@@ -32,6 +31,10 @@ var upload = multer(
 		}).single('file');
 /** API path that will upload the files */
 exports.importToJSON = function(req, res) {
+	
+	var typ = req.params.type;
+	let model = require('mongoose').model('ideas');
+	    
 	var exceltojson;
 	upload(req, res,
 			function(err) {
@@ -73,14 +76,19 @@ exports.importToJSON = function(req, res) {
 								data : null
 							});
 						}
-
+						
 						model.insertMany(result, function(error, docs) {
-							return res.redirect('/pages/importdata.html');
+							if(error){
+								console.log(error)
+							}
+							else{
+								console.log(docs);
+							console.log("Successfully Inserted  data")
+							return res.redirect('/pages/ideas.html');
+							}
+							
 						});
-						/*
-						 * res.json({ //error_code : 0, //err_desc : null, data :
-						 * result });
-						 */
+						
 
 					});
 				} catch (e) {
@@ -90,47 +98,14 @@ exports.importToJSON = function(req, res) {
 					});
 				}
 			})
-}
-exports.list = function(req, res ,next) {
-	//console.log("UserName"+ req.user.firstName)
-	var query = model.find({}).sort("Team");
-	query.exec(function(err, results) {
-		res.send(results);
-	});
-};
-exports.byTeam = function(req, res) {
-	var team = req.body.team;
-	var location = req.body.location;
-	var project = req.body.project;
-	
-	var query = model.find({});
-	team != null ? query.where('Team', team):"";
-	location != null ? query.where('Site', location):"";
-	project != null ? query.where('Project', project):"";
-		
-	query.sort('Team').exec(function(err, results) {
-		res.send(results);
-	});
 };
 
-exports.getEmpData =function(req, res){
-	console.log("inside getEmpData");
-	var empName = req.body.empName;
-	var query = model.find({
-		Name: empName
-	});
-	query.exec(function(err, results) {
-		res.send(results);
-	});
-};
-exports.getWeeklyData =function(req, res){
-	var Mon = req.body.Mon;
-	var query = calendarData.find({
-		month : Mon
-	});
-	query.exec(function(err, results) {
-		res.send(results);
-	});
-};
+
+
+
+
+
+
+
 
 

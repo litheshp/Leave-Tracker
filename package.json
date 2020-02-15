@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "array-unique": "^0.3.2",
     "body-parser": "^1.2.2",
     "cfenv": "^1.2.2",
+    "chart.js": "^2.9.3",
     "compression": "^1.7.1",
     "connect-flash": "~0.1.1",
     "cookie-parser": "^1.4.4",

@@ -1,10 +1,10 @@
 exports.render = function(req,res){
 
 	if(req.user) {
-		    res.redirect('/pages/index.html');
+		    res.redirect('/pages/AllData.html');
 		}
 		else {
-
-			res.sendFile(__dirname+'/views/index.html');
+			res.redirect('/views/login.html');	
+			//res.sendFile('/views/index.html');
 		}
 };

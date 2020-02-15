@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Leave Request</title>
+<title>Innovations | IBM</title>
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,7 +18,7 @@
 <link href="../vendor/jquery/jquery.datetimepicker.min.css"
 	rel="stylesheet">
 
-
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Custom CSS -->
 <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
@@ -27,94 +27,190 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id="wrapper" ng-controller="requestController">
-
-		 <div ng-include="'navigation.html'" replace></div>
+	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">Innovation Tracker</a>
+		</div>
+		<!-- /.navbar-header -->
+	
+		<ul class="nav navbar-top-links navbar-right">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> </a>
+					</li>
+					<li><a href="#"><i class="fa fa-envelope  fa-fw"></i> </a>
+					</li>
+					<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+					</li>
+					<li class="divider"></li>
+					<li><a href="/signout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+					</li>
+				</ul>
+				<!-- /.dropdown-user -->
+			</li>
+			<!-- /.dropdown -->
+		</ul>
+		<!-- /.navbar-top-links -->
+	
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div> <!-- /input-group -->
-						</li>
-						<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
-								Dashboard</a></li>
-						<li><a href="#"><i class="fa fa-files-o fa-fw"></i>
-								Requests<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="login.html">{{user}}</a></li>
-							</ul> <!-- /.nav-second-level --></li>
-					</ul>
-				</div>
-
+				<ul class="nav" id="side-menu">
+			 
+					<li>
+						<a href="AllData.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+					</li>
+				   <li>
+						<a href="#"><i class="fa fa-table fa-fw"></i> Idea Menu<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+						<li>
+								<a href="ideas.html">Ideas</a>
+							 
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-files-o fa-fw"></i> Data Import<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="importIdeaRequests.html">Import From excel</a>
+							</li>
+							 
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-files-o fa-fw"></i> Requests<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="newRequest.html">Idea Request</a>
+							</li>
+						   
+						</ul>
+						<!-- /.nav-second-level -->
+					</li>
+					  
+				</ul>
 			</div>
+			<!-- /.sidebar-collapse -->
 		</div>
+		<!-- /.navbar-static-side -->
+	</nav>
+	<div id="wrapper">
+
+		
+		
 		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Leave Request</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
+			
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"></div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">New Idea Request</div>
 						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-6">
-									<form role="form" action="/api/new" method="post">
-										<!-- <div class="form-group">
-                                            <label>First Name</label>
-                                            <input class="form-control" placeholder="Enter First name" ng-model="FirstName" name="FirstName" required>
+							
+									<form role="form" action="/api/newIdea" method="post">
+										<div class="row">
+											<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+                                            <label>Portfolio</label>
+                                            <input class="form-control" placeholder="Enter Portfolio"  name="Portfolio" required>
                                         </div>
 										<div class="form-group">
-                                            <label>Second Name</label>
-                                            <input class="form-control" placeholder="Enter Second name" ng-model="SecondName" name="SecondName" required>
-                                        </div> -->
-                                        <div class="form-group">
-                                            <label>Full Name</label>
-<!--                                             <input class="form-control" placeholder="Enter Full name" ng-model="fullName" name="fullName" required> -->
-                                            <select class="form-control"  ng-options="x for x in config[0].value track by x" ng-model="fullName" name="fullName" required><option value="">Select Name</option></select>
+                                            <label>Team/Sub group</label>
+                                            <input class="form-control" placeholder="Enter Team/Sub group"  name="TeamOrSub_group" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Employee Id</label>
-                                            <select class="form-control"  ng-options="x for x in config[2].value track by x" ng-model="empId" name="empId"  required><option value="">Select EmpId</option></select>
+                                            <label>Application Name</label>
+                                        <input class="form-control" placeholder="Enter Application Name"  name="ApplicationName" required>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Part Of CI Ideastream</label>
+                                            <input class="form-control" placeholder="Enter Application Name"  name="PartOfCI_Ideastream" required>
                                         </div>
 										<div class="form-group">
-											<label>Team</label> 
-											<select class="form-control"  ng-model="team" name = "team" ng-options="x for x in config[1].value track by x"  required><option value="">Select Team</option></select>
+											<label>Category</label> 
+											<input class="form-control" placeholder="Enter Category"  name="Category" required>
 										</div>
 										<div class="form-group">
-											<label>Start Date</label> 
-											<input id="startdatetime" ng-model="StartDate" name="StartDate" placeholder="MM/DD/YYY HH:MM" class="form-control" required>
+											<label>Value Add Title</label> 
+											<input class="form-control" placeholder="Enter Value Add Title"  name="ValueAddTitle" required>
+										</div>
+										<div class="form-group">
+											<label>Details</label> 
+											<input class="form-control" placeholder="Enter Details"  name="Details" required>
+										</div>
+										<div class="form-group">
+											<label>OneTime / RunTime</label> 
+											<input class="form-control" placeholder="Enter OneTime / RunTime"  name="OneTimeOrRunTime" required>
+										</div>
+									
+										<div class="form-group">
+											<label>Potential Business Benefit</label> 
+											<input class="form-control" placeholder="Enter Potential Business Benefit"  name="PotentialBusinessBenefit" required>
+										</div>
+										<div class="form-group">
+											<label>Cost Benefit To Client</label> 
+											<input class="form-control" placeholder="Enter Cost Benefit To Client"  name="CostBenefitToClient" required>
+										</div>
+									</div>
+							
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<label>Revenue to IBM</label> 
+											<input class="form-control" placeholder="Enter Revenue to IBM"  name="RevenueToIBM" required>
+										</div>
+										<div class="form-group">
+											<label>Current Status</label> 
+											<input class="form-control" placeholder="Enter Current Status"  name="CurrentStatus" required>
+										</div>
+										<div class="form-group">
+											<label>Cost Benefit To Client</label> 
+											<input class="form-control" placeholder="Enter Cost Benefit To Client"  name="CostBenefitToClient" required>
+										</div>
+										<div class="form-group">
+											<label>Identified Date</label> 
+											<input  id="IdentifiedDate"  name="IdentifiedDate" placeholder="DDMMYYY"  class="form-control" required>
 
 										</div>
 										<div class="form-group">
-											<label>End Date</label> 
-											<input id="enddatetime" ng-model="EndDate" name ="EndDate" placeholder="MM/DD/YYY HH:MM" class="form-control" required>
+											<label>Approved Date</label> 
+											<input  id="ApprovedDate"  name ="ApprovedDate"  placeholder="DDMMYYY" class="form-control" required>
 										</div>
 										<div class="form-group">
-<!-- 												 <p id="result"  ng-model="days" name="days"  class="form-control"></p> -->
-												  <input type="text" id="days"  ng-model="days" name="days"  class="form-control" required></input>
+											<label>ImplementedDate</label> 
+											<input   id="ImplementedDate"  name ="ImplementedDate" placeholder="DDMMYYY"  class="form-control" required>
+										</div>
+										
+										<div class="form-group">
+                                            <label>Proposed to Client's Name</label>
+                                            <input type="text" class="form-control"  name="ProposedToClientsName" placeholder= "Proposed to Client's Name" required></input>
 										</div>
 										<div class="form-group">
-                                            <label>Reason For Leave</label>
-                                            <input type="text" class="form-control" rows="3" ng-model="Reason" name="Reason" placeholder= "Reason for leave" required></input>
-                                        </div>
-										<button type="submit" class="btn btn-primary">Submit</button>
+                                            <label>BAG ID</label>
+                                            <input type="text" class="form-control"   name="BAGID" placeholder= "Enter BAG ID" required></input>
+										</div>
+										<div class="form-group">
+											<label>Sales connect ID/label </label>
+				                               <input type="text" class="form-control"   name="SalesconnectID" placeholder= "Enter Sales connect ID" required></input>
+										</div>
+										
+										
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">Submit</button>
 										<button type="reset" class="btn btn-primary">Reset</button>
 									</form>
-								</div>
-							</div>
+							
 
 						</div>
 					</div>
@@ -130,111 +226,30 @@
 	<!-- jQuery -->
 <!-- 	<script src="../vendor/jquery/jquery.min.js"></script> -->
 	<script src="../vendor/jquery/jquery.js"></script>
-	<script src="../vendor/jquery/jquery.datetimepicker.full.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 	
 	<!--  jQuery -->
 	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script> -->
-	<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
-<script type="text/javascript"	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
+
 	<!-- Custom Theme JavaScript -->
 	<script type="text/javascript" src="../dist/js/sb-admin-2.js"></script>
-	<script type="text/javascript"  src="../js/app.js"></script>
-	<script type="text/javascript" src="../controllers/requests.client.controller.js"></script>
+	
+	<!-- <script type="text/javascript" src="../controllers/requests.client.controller.js"></script> -->
 	<!-- AngularJS -->
 
 
 	
-	<script>
 	
- 
- 
-	$("#startdatetime").datetimepicker({
-        step:30
-        });
-         $("#enddatetime").datetimepicker({
-        step:30
-        });
-         $("#startdatetime").on('change', function(e) {
-         $( "#enddatetime" ).datetimepicker({  minDate: new Date($('#startdatetime').val()) });
-         });
-        $("#enddatetime").on('change', function(e) {
-        
-         $( "#startdatetime" ).datetimepicker({  maxDate: new Date($('#enddatetime').val()) });
-	var fromDate = $('#startdatetime').val(), 
-  		toDate = $('#enddatetime').val(), 
-		from, to, druation;
-  var d1 =  $('#startdatetime').val();
-  var d2 = $('#enddatetime').val();
-	//from = moment(fromDate, 'YYYY-MM-DD'); // format in which you have the date
-	//to = moment(toDate, 'YYYY-MM-DD');     // format in which you have the date
-  
-	/* using diff */
-	//duration = to.diff(from, 'days')     
-	duration = workingDaysBetweenDates(d1, d2)
-	
-	/* show the result */
-	$('#result').text(duration + ' days');
-   $('#days').val(duration)
-});
-
-function workingDaysBetweenDates(d0, d1) {
-	var holidays = ['2018-03-22','2018-06-03'];
-    var startDate = parseDate(d0);
-    var endDate = parseDate(d1);  
-    // Validate input
-    if (endDate < startDate) {
-        return 0;
-    }
-    // Calculate days between dates
-    var millisecondsPerDay = 86400 * 1000; // Day in milliseconds
-    startDate.setHours(0,0,0,1);  // Start just after midnight
-    endDate.setHours(23,59,59,999);  // End just before midnight
-    var diff = endDate - startDate;  // Milliseconds between datetime objects    
-    var days = Math.ceil(diff / millisecondsPerDay);
-    
-    // Subtract two weekend days for every week in between
-    var weeks = Math.floor(days / 7);
-    days -= weeks * 2;
-
-    // Handle special cases
-    var startDay = startDate.getDay();
-    var endDay = endDate.getDay();
-    
-    // Remove weekend not previously removed.   
-    if (startDay - endDay > 1) {
-        days -= 2;
-    }
-    // Remove start day if span starts on Sunday but ends before Saturday
-    if (startDay == 0 && endDay != 6) {
-        days--;  
-    }
-    // Remove end day if span ends on Saturday but starts after Sunday
-    if (endDay == 6 && startDay != 0) {
-        days--;
-    }
-    /* Here is the code */
-    for (var i in holidays) {
-    var d2 = parseDate(holidays[i]);
-      if ((d2>= parseDate(d0)) && (d2 <= parseDate(d1))) {
-      	days--;
-      }
-    }
-    return days;
-}
-           
-function parseDate(input) {
-	// Transform date from text to date
-  var parts = input.match(/(\d+)/g);
-  // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
-  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
-}
-       
-	
-     </script>
 </body>
-
+<script>
+	$( function() {
+	  $( "#ImplementedDate" ).datepicker();
+	  $("#ApprovedDate").datepicker();
+	  $("#IdentifiedDate").datepicker();
+	  ApprovedDate
+	} );
+	</script>
 </html>
